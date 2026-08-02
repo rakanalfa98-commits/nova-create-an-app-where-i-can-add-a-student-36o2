@@ -1,0 +1,7 @@
+/* Custom fonts and any small global overrides */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* You can add more custom styles here if needed,
+   but Tailwind handles most of the styling. */
