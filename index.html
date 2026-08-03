@@ -16,26 +16,95 @@
         
         <div id="app-message" class="hidden p-3 mb-4 text-sm text-center rounded-lg" role="alert"></div>
 
-        <form id="add-student-form" class="flex flex-col sm:flex-row gap-3 mb-8">
-            <input 
-                type="text" 
-                id="student-name-input" 
-                placeholder="Enter student name" 
-                class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-sm text-gray-700"
-                aria-label="Student name input"
-                required
-            >
-            <button 
-                type="submit" 
-                class="bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 shadow-md flex-shrink-0"
-            >
-                Add Student
-            </button>
-        </form>
+        <!-- Auth Section -->
+        <div id="auth-section" class="space-y-6">
+            <h2 class="text-2xl font-semibold text-center text-gray-700 mb-4">Welcome</h2>
+            
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="space-y-4">
+                <input 
+                    type="email" 
+                    id="signup-email" 
+                    placeholder="Email" 
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-sm text-gray-700"
+                    required
+                >
+                <input 
+                    type="password" 
+                    id="signup-password" 
+                    placeholder="Password" 
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-sm text-gray-700"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="w-full bg-green-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200 shadow-md"
+                >
+                    Sign Up
+                </button>
+            </form>
 
-        <div id="student-list" class="space-y-4">
-            <!-- Student items will be dynamically added here -->
-            <p id="no-students-message" class="text-center text-gray-500 italic">No students added yet.</p>
+            <p class="text-center text-gray-600">Already have an account? 
+                <button id="show-signin-btn" class="text-blue-600 hover:underline font-medium">Sign In</button>
+            </p>
+
+            <!-- Sign In Form -->
+            <form id="signin-form" class="space-y-4 hidden">
+                <input 
+                    type="email" 
+                    id="signin-email" 
+                    placeholder="Email" 
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-sm text-gray-700"
+                    required
+                >
+                <input 
+                    type="password" 
+                    id="signin-password" 
+                    placeholder="Password" 
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-sm text-gray-700"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="w-full bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus="ring-blue-500 focus:ring-offset-2 transition duration-200 shadow-md"
+                >
+                    Sign In
+                </button>
+            </form>
+            <p class="text-center text-gray-600 hidden" id="show-signup-container">Don't have an account? 
+                <button id="show-signup-btn" class="text-green-600 hover:underline font-medium">Sign Up</button>
+            </p>
+        </div>
+
+        <!-- Student Tracker Section -->
+        <div id="student-tracker-section" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-semibold text-gray-700">My Students</h2>
+                <button id="signout-btn" class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200 shadow-md">
+                    Sign Out
+                </button>
+            </div>
+            <form id="add-student-form" class="flex flex-col sm:flex-row gap-3 mb-8">
+                <input 
+                    type="text" 
+                    id="student-name-input" 
+                    placeholder="Enter student name" 
+                    class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-sm text-gray-700"
+                    aria-label="Student name input"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 shadow-md flex-shrink-0"
+                >
+                    Add Student
+                </button>
+            </form>
+
+            <div id="student-list" class="space-y-4">
+                <!-- Student items will be dynamically added here -->
+                <p id="no-students-message" class="text-center text-gray-500 italic">No students added yet.</p>
+            </div>
         </div>
     </div>
 
