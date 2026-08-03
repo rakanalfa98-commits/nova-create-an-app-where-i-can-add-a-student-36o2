@@ -5,8 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentNameInput = document.getElementById('student-name-input');
     const studentList = document.getElementById('student-list');
     const noStudentsMessage = document.getElementById('no-students-message');
+    const appMessage = document.getElementById('app-message'); // New: Message display area
 
     let students = []; // Students will now be managed by Supabase
+
+    // Utility function to display messages
+    const displayMessage = (message, type = 'info') => {
+        appMessage.textContent = message;
+        appMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700', 'bg-blue-100', 'text-blue-700');
+        
+        if (type === 'success') {
+            appMessage.classList.add('bg-green-100', 'text-green-700');
+        } else if (type === 'error') {
+            appMessage.classList.add('bg-red-100', 'text-red-700');
+        } else { // info or default
+            appMessage.classList.add('bg-blue-100', 'text-blue-700');
+        }
+        appMessage.classList.remove('hidden');
+
+        setTimeout(() => {
+            appMessage.classList.add('hidden');
+        }, 5000); // Hide after 5 seconds
+    };
 
     // Function to render all students
     const renderStudents = async () => {
@@ -19,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (error) {
             console.error('Error fetching students:', error.message);
-            // Optionally, display an error message to the user
+            displayMessage(`Error loading students: ${error.message}`, 'error');
             noStudentsMessage.textContent = 'Error loading students.';
             noStudentsMessage.style.display = 'block';
             return;
@@ -73,12 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (error) {
                 console.error('Error adding student:', error.message);
-                // Optionally, show an error to the user
+                displayMessage(`Error adding student: ${error.message}. Make sure RLS is configured.`, 'error');
                 return;
             }
             
-            studentNameInput.value = ''; // Clear input
+            studentNameInput.value = ''; // Clear input on success
+            displayMessage(`Student "${name}" added successfully!`, 'success');
             renderStudents(); // Re-render to show the new student
+        } else {
+            displayMessage('Student name cannot be empty.', 'info');
         }
     });
 
@@ -106,9 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (error) {
                     console.error('Error updating student count:', error.message);
-                    // Optionally, show an error to the user
+                    displayMessage(`Error updating count for ${student.name}: ${error.message}`, 'error');
                     return;
                 }
+                displayMessage(`${student.name}'s ${type} count updated!`, 'success');
                 renderStudents(); // Re-render to update counts
             }
         }
